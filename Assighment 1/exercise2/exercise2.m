@@ -1,6 +1,6 @@
 img = imread('barbara.jpg');
 grayimg= rgb2gray(img);
-imwrite(grayimg,'gray_barbara.jpg');
+%imwrite(grayimg,'gray_barbara.jpg');
 imhist(grayimg,51);
 saveas(gcf,'histogram.jpg')
 pause;
@@ -24,5 +24,13 @@ figure
 imgfin=uint8(imgfin);
 imshow(imgfin);
 imwrite(imgfin,'finalimage.jpg')
+pause;
+imgmax=max(imgfin);
+th=imgmax*0.05;
+index=find(imgfin<=th);
+imgfin(index)=0;
+imshow(imgfin)
+imwrite(imgfin,'5pthreshold.jpg')
+
 
 
