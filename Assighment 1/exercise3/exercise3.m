@@ -14,33 +14,35 @@ filter3=1/9*[1,1,1;1,1,1;1,1,1];
 I1=zeros(5,5);
 for i=1:5,
     for j=2:4,
-        m=[i1(i,j-1),i1(i,j),i1(i,j+1)];
+        m=[i2(i,j-1),i2(i,j),i2(i,j+1)];
         I1(i,j)=sum(double(m).*filter1);
     end
 end
-I1
+I2_filter1=round(I1)
 I2=zeros(5,5);
 for i=2:4,
     for j=1:5,
-        m=[i1(i-1,j);i1(i,j);i1(i+1,j)];
+        m=[i2(i-1,j);i2(i,j);i2(i+1,j)];
         I2(i,j)=sum(double(m).*filter2);
     end
 end
-I2
+I2_filter2=round(I2)
 I3=zeros(5,5);
 for i=2:4,
     for j=2:4,
-        m=[i1(i-1,j-1),i1(i-1,j),i1(i-1,j+1);
-            i1(i,j-1),i1(i,j),i1(i,j+1);
-            i1(i+1,j-1),i1(i+1,j),i1(i+1,j+1)];
+        m=[i2(i-1,j-1),i2(i-1,j),i2(i-1,j+1);
+            i2(i,j-1),i2(i,j),i2(i,j+1);
+            i2(i+1,j-1),i2(i+1,j),i2(i+1,j+1)];
         n=double(m).*filter3;
         I3(i,j)=sum(n(:));
     end
 end
-I3
+I2_filter3=round(I3)
 img= imread('barbara.jpg');
 gimg=rgb2gray(img);
-%f1=
+f1=[-1,0,1];
+r1=imfilter(gimg,f1);
+imwrite(r1,'central.jpg');
 f2 = fspecial('sobel');
 r2= imfilter(gimg,f2);
 imwrite(r2,'sobel.jpg');
