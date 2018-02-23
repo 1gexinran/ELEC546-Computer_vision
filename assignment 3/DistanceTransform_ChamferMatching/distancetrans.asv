@@ -1,0 +1,15 @@
+img = imread('cow.png');
+gimg = rgb2gray(img);
+cow_edg = edge(gimg,'canny');
+cow_edge = 1-cow_edg;
+for i = 2:400
+    for j = 2:400
+        cow_edge(i,j) = min(cow_edge(i,j),cow_edge(i, j-1)+1,cow_edge());
+    end 
+end
+% for i = 400:2
+%     for j = 400:2
+%         cow_edge(i,j) = min(cow_edge(i,j),cow_edge(i, j+1)+1);
+%         cow_edge(i+1,j) = min(cow_edge(i+1,j),cow_edge(i,j+1)+1);
+%     end 
+% end
