@@ -15,4 +15,7 @@ for i = 400:-1:1
     end 
 end
 imshow(uint8(cow_edge))
-
+imwrite(uint8(cow_edge),'result.jpg')
+[d1, id1] = bwdist(cow_edg,'chessboard');
+[d2, id2] = bwdist(cow_edg, 'cityblock');
+[d3, id3] = bwdist(cow_edg,'euclidean');

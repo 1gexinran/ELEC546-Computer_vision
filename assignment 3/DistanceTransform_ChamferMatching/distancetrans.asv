@@ -1,15 +1,21 @@
+clear
 img = imread('cow.png');
 gimg = rgb2gray(img);
 cow_edg = edge(gimg,'canny');
 cow_edge = 1-cow_edg;
-for i = 2:400
-    for j = 2:400
-        cow_edge(i,j) = min(cow_edge(i,j),cow_edge(i, j-1)+1,cow_edge());
+cow_edge(cow_edge==1)=inf;
+for i = 2:401
+    for j = 2:401
+        cow_edge(i,j) = min([cow_edge(i,j),cow_edge(i, j-1)+1,cow_edge(i-1,j)+1]);
     end 
 end
-% for i = 400:2
-%     for j = 400:2
-%         cow_edge(i,j) = min(cow_edge(i,j),cow_edge(i, j+1)+1);
-%         cow_edge(i+1,j) = min(cow_edge(i+1,j),cow_edge(i,j+1)+1);
-%     end 
-% end
+for i = 400:-1:1
+    for j = 400:-1:1
+        cow_edge(i,j) = min([cow_edge(i,j),cow_edge(i, j+1)+1,cow_edge(i+1,j)+1]);
+    end 
+end
+imshow(uint8(cow_edge))
+imwrite(uint8(cow_edge),'result.jpg')
+figure
+[d1, id1] = bwdist(cow_edge,'chessboard');
+[d2, id2] = bwdist

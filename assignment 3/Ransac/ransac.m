@@ -5,9 +5,9 @@ sz = 2 ;
 scatter(data(1,:),data(2,:),sz);
 hold on;
 s = 2;
-iter = 500;
+iter = 100;
 d = 500;
-t = 0.4;
+t = 0.6;
 pertotal=0;
 for i= 1:iter
     index = randperm(1000,s);
@@ -33,7 +33,7 @@ for i=1:length(mask)
     if mask(i)
         inliers(1,k) = data(1,i);
         k = k+1;
-%         scatter(data(1,i),data(2,i),sz,[0,1,0]);
+        scatter(data(1,i),data(2,i),sz,[0,1,0]);
     end
 end
 besta = -bestline(1)/bestline(2);
