@@ -5,7 +5,7 @@ imshow(img);
 figure
 t = 10;
 pertotal = 0;
-iter = 1000;
+iter = 100;
 for i = 1:iter
     index = randperm(size(orig_feature_pt,2),3);
     a = zeros(6,6);
